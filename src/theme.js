@@ -1,6 +1,7 @@
 const theme = {
   colors: {
     primary: "#0B24FB",
+    pink: "#EEBECE",
   },
   breakpoints: {
     xs: "376px",

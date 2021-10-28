@@ -9,6 +9,10 @@ const StyledFooter = styled.div`
 
 const FooterCopyright = styled.div`
   font-size: 0.75rem;
+
+  span {
+    font-weight: bold;
+  }
 `;
 
 const FooterVersion = styled.div`
@@ -30,7 +34,9 @@ function Footer() {
     <StyledFooter>
       <Container>
         <FooterContainer>
-          <FooterCopyright>wknd@2020</FooterCopyright>
+          <FooterCopyright>
+            <span>wknd@</span>2020
+          </FooterCopyright>
           <FooterVersion>alpha version 0.1</FooterVersion>
         </FooterContainer>
       </Container>
