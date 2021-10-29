@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BlackWaveSvg from "../../assets/svg/black_wave.svg";
 import LegoPng from "../../assets/images/lego.png";
+
 const StyledHero = styled.div`
   position: relative;
   background-image: url(${BlackWaveSvg});
@@ -27,6 +28,11 @@ const HeroDescription = styled.p`
   font-size: 1rem;
   font-weight: 600;
   font-style: italic;
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    font-size: 1.313rem;
+  }
 `;
 
 const LegoImage = styled.img``;

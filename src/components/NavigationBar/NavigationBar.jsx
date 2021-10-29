@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import ProfilePicture from "../../assets/images/profile_picture.png";
-import Container from "../Container/Container";
+import { StyledContainer } from "../Container/Container";
 
 const StyledNavigationBar = styled.div`
   height: 4.188rem;
   background-color: white;
 `;
 
-const NavContent = styled.div`
+const NavContent = styled(StyledContainer)`
   display: flex;
-  padding: 1.063rem 1.5rem;
+  padding-top: 1.063rem;
+  padding-bottom: 1.063rem;
 `;
 
 const NavProfile = styled.div`
@@ -36,16 +37,14 @@ const NavInfo = styled.div`
 function NavigationBar() {
   return (
     <StyledNavigationBar>
-      <Container>
-        <NavContent>
-          <NavProfile>
-            <img src={ProfilePicture} width="33" height="33" alt="Icon" />
-          </NavProfile>
-          <NavInfo>
-            <NavGreeting>Good Morning</NavGreeting> <NavName>Fellas</NavName>
-          </NavInfo>
-        </NavContent>
-      </Container>
+      <NavContent>
+        <NavProfile>
+          <img src={ProfilePicture} width="33" height="33" alt="Icon" />
+        </NavProfile>
+        <NavInfo>
+          <NavGreeting>Good Morning</NavGreeting> <NavName>Fellas</NavName>
+        </NavInfo>
+      </NavContent>
     </StyledNavigationBar>
   );
 }

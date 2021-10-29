@@ -13,6 +13,11 @@ const FooterCopyright = styled.div`
   span {
     font-weight: bold;
   }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    font-size: 1rem;
+  }
 `;
 
 const FooterVersion = styled.div`
@@ -20,10 +25,16 @@ const FooterVersion = styled.div`
   border: white solid 1px;
   padding: 0.188rem 0.5rem;
   border-radius: 1rem;
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+  }
 `;
 
 const FooterContainer = styled.div`
-  padding: 1.563rem 1.5rem;
+  padding: 1.563rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
