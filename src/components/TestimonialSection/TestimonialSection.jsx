@@ -1,4 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import ArrowRight from '../../assets/svg/arrow_right.svg'
+import { useRef, useEffect, useState } from 'react';
+import axios from 'axios'
 
 const StyledTestimonial = styled.div`
   position: relative;
@@ -10,12 +13,23 @@ const SectionTitle = styled.h1`
   font-size: 2rem;
   font-weight: 900;
   margin-bottom: 1.875rem;
+
+  @media (min-width: 992px) {
+    text-align: center;
+  }
 `;
 
 const TestimonialContainer = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 0.625rem;
+  scroll-behavior: smooth;
+  @media (min-width: 992px) {
+    max-width: 37.313rem;
+    overflow-x: hidden;
+  }
+  
+}
 `;
 
 const TestimonialItem = styled.div`
@@ -28,6 +42,8 @@ const TestimonialTitle = styled.h1`
   font-weight: 900;
   font-size: 2rem;
   margin-bottom: 1.25rem;
+
+
 `;
 
 const TestimonialContent = styled.div`
@@ -35,33 +51,119 @@ const TestimonialContent = styled.div`
   letter-spacing: -0.43px;
 `;
 
+const SliderContainer = styled.div`
+  display:flex;
+  justify-content: center;
+`
+
+const ActionSlider = styled.img`
+  margin-left: 3.125rem;
+  cursor: pointer;
+  ${({left}) => left && css`
+     transform: rotate(180deg);
+     margin-left: 0;
+     margin-right: 3.125rem;
+  `}
+
+  ${({disabled}) => disabled && css`
+     opacity: 0.5;
+     cursor: default;
+  `}
+`
+
 function TestimonialSection() {
+  const testimonialContainerRef = useRef(null);
+  const itemsRef = useRef([]);
+
+  const itemWidth = 257;
+  const itemDisplayPerPage = 2;
+
+  const [testimonial, setTestimonial] = useState([]);
+
+  const [sliderState, setSliderState] = useState({
+    currentItem: 0,
+    nextItem: 1,
+    maxItem: 0,
+    nextButtonDisabled: false,
+    prevButtonDisabled: true,
+  })
+
+  useEffect(() => {
+    axios.get("https://wknd-take-home-challenge-api.herokuapp.com/testimonial")
+    .then((res) => {
+      setTestimonial(res.data)
+      setSliderState({...sliderState, maxItem: Math.ceil(res.data.length / itemDisplayPerPage)})
+    })
+  },[]);
+
+  const actionSliderHandler = (e) => {
+    let nagivateValue = e === "next" ? sliderState.nextItem : (sliderState.currentItem - 1);
+    let scrollToValue = itemWidth * nagivateValue;
+    let nextLastItem = false;
+    let prevFirstItem = false;
+
+    // Prevent nagivate button on first and last item
+    if ( (e === "prev" && sliderState.prevButtonDisabled) || (e === "next" && sliderState.nextButtonDisabled) ) {
+      return
+    }
+
+    // Determine last and first scroll
+    switch (e) {
+      case "next":
+        // If last item
+        if (sliderState.nextItem >= sliderState.maxItem) {
+          nextLastItem = true;
+        }
+        break;
+
+      case "prev":
+        // if first item
+        if (scrollToValue <= 0) {
+          prevFirstItem = true;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    testimonialContainerRef.current.scrollTo(scrollToValue,0)
+
+    setSliderState(
+      {
+        ...sliderState, 
+        currentItem: e === "next" ? sliderState.currentItem + 1 : sliderState.currentItem - 1, 
+        nextItem: e === "next" ? sliderState.nextItem + 1 : sliderState.nextItem - 1,
+        nextButtonDisabled: nextLastItem,
+        prevButtonDisabled: prevFirstItem
+      }
+    )
+}
+
   return (
     <StyledTestimonial>
       <SectionTitle>Testimonial</SectionTitle>
-      <TestimonialContainer>
-        <TestimonialItem>
-          <TestimonialTitle>Blue Kicks</TestimonialTitle>
-          <TestimonialContent>
-            Places where you can leverage tools and software to free up time to
-            focus on growing the business.
-          </TestimonialContent>
-        </TestimonialItem>
-        <TestimonialItem>
-          <TestimonialTitle>Blue Kicks</TestimonialTitle>
-          <TestimonialContent>
-            Places where you can leverage tools and software to free up time to
-            focus on growing the business.
-          </TestimonialContent>
-        </TestimonialItem>
-        <TestimonialItem>
-          <TestimonialTitle>Blue Kicks</TestimonialTitle>
-          <TestimonialContent>
-            Places where you can leverage tools and software to free up time to
-            focus on growing the business.
-          </TestimonialContent>
-        </TestimonialItem>
-      </TestimonialContainer>
+      <SliderContainer>
+        <ActionSlider left disabled={sliderState.prevButtonDisabled} onClick={()=> actionSliderHandler('prev')} src={ArrowRight}/>
+        
+        <TestimonialContainer ref={testimonialContainerRef}>
+          
+        {testimonial.length === 0 ? 
+        <p style={{marginTop: '.5rem'}}>Loading...</p> 
+        : 
+        testimonial.map((element, index) => {
+          return (
+            <TestimonialItem ref={el => itemsRef.current[index] = el} key={element.id}>
+              <TestimonialTitle>{element.by}</TestimonialTitle>
+              <TestimonialContent>
+                {element.testimony}
+              </TestimonialContent>
+            </TestimonialItem>
+          )
+        })}
+        </TestimonialContainer>
+        <ActionSlider disabled={sliderState.nextButtonDisabled} onClick={()=> actionSliderHandler('next')} src={ArrowRight}/>
+      </SliderContainer>
     </StyledTestimonial>
   );
 }

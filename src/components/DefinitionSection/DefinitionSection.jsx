@@ -4,8 +4,10 @@ import LegoRight from "../../assets/images/lego_right.png";
 import Oval from "../../icon-components/Oval";
 
 const StyledDefinition = styled.div`
-  padding: 1.25rem 1.5rem;
+  /* padding: 1.25rem 1.5rem; */
+  padding: 9.5rem 1.5rem 1.25rem 1.5rem;
   background-color: ${theme.colors.pink};
+  position: relative;
 `;
 
 const DefinitionText = styled.div`
@@ -53,7 +55,21 @@ const DefinitionAuthor = styled.p`
 const LegoRightImage = styled.img`
   position: absolute;
   right: 0;
+  top: 0;
 `;
+
+const CircleSvgContainer = styled.div`
+  position: relative;
+  height: 9.938rem;
+  svg {
+    position: absolute;
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+      left: 16.188rem;
+    }
+  }
+`
 
 function DefinitionSection() {
   return (
@@ -68,7 +84,10 @@ function DefinitionSection() {
       </DefinitionText>
       <DefinitionAuthor>-weekend team</DefinitionAuthor>
 
-      <Oval style={{ marginBottom: "5.813rem" }} />
+      <CircleSvgContainer>
+        <Oval/>
+      </CircleSvgContainer>
+      
     </StyledDefinition>
   );
 }

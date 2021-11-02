@@ -48,7 +48,7 @@ function LandingPage() {
           />
           <TextSection
             name="You're all set"
-            description="TEST The wise man therefore always holds in these matters to this principle of selection."
+            description="The wise man therefore always holds in these matters to this principle of selection."
           />
 
           <StyledLegoLeft
