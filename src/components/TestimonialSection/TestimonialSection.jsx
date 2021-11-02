@@ -24,6 +24,7 @@ const TestimonialContainer = styled.div`
   overflow-x: auto;
   gap: 0.625rem;
   scroll-behavior: smooth;
+
   @media (min-width: 992px) {
     max-width: 37.313rem;
     overflow-x: hidden;
@@ -57,6 +58,7 @@ const SliderContainer = styled.div`
 `
 
 const ActionSlider = styled.img`
+  display: none;
   margin-left: 3.125rem;
   cursor: pointer;
   ${({left}) => left && css`
@@ -69,6 +71,10 @@ const ActionSlider = styled.img`
      opacity: 0.5;
      cursor: default;
   `}
+
+  @media (min-width: 992px) {
+    display: block;
+  }
 `
 
 function TestimonialSection() {
