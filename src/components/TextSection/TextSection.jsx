@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const TextItem = styled.div`
   padding-bottom: 4.188rem;
@@ -23,19 +23,36 @@ const TextDescription = styled.div`
   color: white;
   line-height: 1.5rem;
   font-size: 1rem;
-  letter-spacing: -0.57px;
+  letter-spacing: -0.036rem;
+
+
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+  
+
+  ${({card}) => card && css`
+   max-width: inherit!important;
+  `}
 
   @media (min-width: 992px) {
     max-width: 38.688rem;
     text-align: center;
+
+    line-height: 1.688rem;
+    font-size: 1.125rem;
+    letter-spacing: -0.04rem;
+
+    justify-content: center;
   }
+ 
 `;
 
-function TextSection({ name, description }) {
+function TextSection({ name, description, card }) {
   return (
     <TextItem>
       <TextTitle>{name}</TextTitle>
-      <TextDescription>{description}</TextDescription>
+      <TextDescription card={card}>{description}</TextDescription>
     </TextItem>
   );
 }

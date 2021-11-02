@@ -5,17 +5,22 @@ import Oval from "../../icon-components/Oval";
 
 const StyledDefinition = styled.div`
   /* padding: 1.25rem 1.5rem; */
-  padding: 9.5rem 1.5rem 1.25rem 1.5rem;
+  padding: 13.813rem 2rem 1.25rem 2rem;
   background-color: ${theme.colors.pink};
   position: relative;
+
+  @media (min-width: 992px) {
+    padding: 9.5rem 1.5rem 1.25rem 1.5rem;
+  }
 `;
 
 const DefinitionText = styled.div`
-  margin-top: 13.813rem;
   font-weight: 500;
   text-align: right;
   width: 100%;
   line-height: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: -0.036rem;
 
   max-width: 600px;
   margin: auto;
@@ -33,6 +38,7 @@ const DefinitionName = styled.span`
 `;
 
 const DefinitionAuthor = styled.p`
+
   font-size: 1rem;
   font-weight: 600;
   font-style: italic;
@@ -49,6 +55,7 @@ const DefinitionAuthor = styled.p`
   // Large devices (desktops, 992px and up)
   @media (min-width: 992px) {
     font-size: 1.313rem;
+    margin-top: 1.875rem;
   }
 `;
 
@@ -61,6 +68,8 @@ const LegoRightImage = styled.img`
 const CircleSvgContainer = styled.div`
   position: relative;
   height: 9.938rem;
+  left: 2.063rem;
+  bottom: -0.3rem;
   svg {
     position: absolute;
 
@@ -82,8 +91,8 @@ function DefinitionSection() {
         arrange, or achieve by resolving difficulties. Merriam-Webster.com
         Dictionary.
       </DefinitionText>
-      <DefinitionAuthor>-weekend team</DefinitionAuthor>
-
+      <DefinitionAuthor>-weekend team </DefinitionAuthor>
+      
       <CircleSvgContainer>
         <Oval/>
       </CircleSvgContainer>

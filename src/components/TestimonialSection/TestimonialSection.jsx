@@ -5,7 +5,12 @@ import axios from 'axios'
 
 const StyledTestimonial = styled.div`
   position: relative;
-  top: -8rem;
+  top: -6.35rem;
+  margin-bottom: -2rem;
+
+  @media (min-width: 992px) {
+    margin-bottom: 0rem;
+  }
 `;
 
 const SectionTitle = styled.h1`
@@ -49,7 +54,7 @@ const TestimonialTitle = styled.h1`
 
 const TestimonialContent = styled.div`
   font-size: 0.75rem;
-  letter-spacing: -0.43px;
+  letter-spacing: -0.027rem;
 `;
 
 const SliderContainer = styled.div`

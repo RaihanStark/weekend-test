@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import theme from "../../theme";
 import Container from "../Container/Container";
+import LegoLeft from "../../assets/images/lego_left.png";
 
 const StyledFooter = styled.div`
   background-color: ${theme.colors.primary};
   color: white;
+  position: relative;
 `;
 
 const FooterCopyright = styled.div`
@@ -40,9 +42,34 @@ const FooterContainer = styled.div`
   align-items: center;
 `;
 
+const StyledLegoLeftContainer = styled.div`
+    height: 8.4rem;
+`
+
+const StyledLegoLeft = styled.img`
+  position: absolute;
+  left: 0;
+  top: -337px;
+
+  width: 253px;
+  height: 337px;
+
+  @media (min-width: 992px) {
+    width: 244px;
+    height: 325px;
+    top: -325px;
+  }
+`;
+
+
 function Footer() {
   return (
     <StyledFooter>
+      <StyledLegoLeft
+          src={LegoLeft}
+          alt="lego on left"
+          srcset=""
+      />
       <Container>
         <FooterContainer>
           <FooterCopyright>

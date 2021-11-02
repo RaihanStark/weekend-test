@@ -5,9 +5,9 @@ import LegoPng from "../../assets/images/lego.png";
 const StyledHero = styled.div`
   position: relative;
   background-image: url(${BackgroundHeroImage});
-  height: 45.714rem;
+  
   background-position: center -4.188rem;
-  background-size: cover;
+ 
   background-repeat: no-repeat;
   text-align: center;
 
@@ -15,6 +15,18 @@ const StyledHero = styled.div`
 
   padding-left: 1.063rem;
   padding-right: 1.063rem;
+  padding-bottom: 1.25rem;
+
+  @media (min-width: 656px) {
+    height: 45.714rem;
+    padding-bottom: 0rem;
+  }
+
+
+  /* @media (min-width: 992px) {
+    height: 45.714rem;
+    padding-bottom: 0rem;
+  } */
 `;
 
 const HeroTitle = styled.h1`
