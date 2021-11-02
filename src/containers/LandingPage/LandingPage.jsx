@@ -7,6 +7,7 @@ import DefinitionSection from "../../components/DefinitionSection/DefinitionSect
 import TestimonialSection from "../../components/TestimonialSection/TestimonialSection";
 import TextSection from "../../components/TextSection/TextSection";
 import LegoLeft from "../../assets/images/lego_left.png";
+import BackgroundHeroImage from '../../assets/images/background_hero.png'
 
 const StyledLegoLeft = styled.img`
   position: absolute;
@@ -17,14 +18,20 @@ const BlackSection = styled.div`
   background-color: black;
   padding: 0 0 0 2rem;
 `;
+
 const StyledLandingPage = styled.div`
   background-color: ${theme.colors.pink};
   height: 100vh;
 `;
 
+const StyledBackgroundImages = styled.img`
+  position: absolute;
+`
+
 function LandingPage() {
   return (
     <StyledLandingPage>
+      {/* <StyledBackgroundImages src={BackgroundHeroImage}/> */}
       <NavigationBar />
       <div>
         <HeroSection />

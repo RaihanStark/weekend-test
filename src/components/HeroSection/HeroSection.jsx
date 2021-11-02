@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import BlackWaveSvg from "../../assets/svg/black_wave.svg";
+import BackgroundHeroImage from '../../assets/images/background_hero.png'
 import LegoPng from "../../assets/images/lego.png";
 
 const StyledHero = styled.div`
   position: relative;
-  background-image: url(${BlackWaveSvg});
-  height: 100%;
+  background-image: url(${BackgroundHeroImage});
+  height: 45.714rem;
+  background-position: center -4.188rem;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
   text-align: center;
 
   color: white;
